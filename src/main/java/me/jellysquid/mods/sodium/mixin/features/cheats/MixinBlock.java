@@ -23,9 +23,8 @@ public abstract class MixinBlock {
     @Shadow
     public abstract float getSlipperiness();
 
-    private boolean cheats = true;//new SodiumGameOptions.CheatSettings().slippy;
+    private SodiumGameOptions opts = SodiumClientMod.options();
 
-    //@Dynamic
     @Inject(method = "getSlipperiness", at = @At("HEAD"), cancellable = true)
     private void getSlipperiness(CallbackInfoReturnable<Float> cir) {
         cir.setReturnValue(booleanSlip());
@@ -33,8 +32,8 @@ public abstract class MixinBlock {
     }
 
     private float booleanSlip() {
-        if (cheats) {
-            return 5.0f;
+        if (opts.cheat.slippy) {
+            return 0.99f;
         } else {
             return getSlipperiness();
         }
