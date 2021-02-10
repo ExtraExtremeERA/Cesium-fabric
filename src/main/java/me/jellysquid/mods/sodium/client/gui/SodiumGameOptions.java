@@ -21,6 +21,7 @@ import java.util.stream.Stream;
 public class SodiumGameOptions {
     public final QualitySettings quality = new QualitySettings();
     public final AdvancedSettings advanced = new AdvancedSettings();
+    public final CheatSettings cheat = new CheatSettings();
 
     private File file;
 
@@ -48,6 +49,10 @@ public class SodiumGameOptions {
         public boolean enableClouds = true;
 
         public LightingQuality smoothLighting = LightingQuality.HIGH;
+    }
+
+    public static class CheatSettings {
+        public boolean slippy = false;
     }
 
     public enum ChunkRendererBackendOption implements TextProvider {

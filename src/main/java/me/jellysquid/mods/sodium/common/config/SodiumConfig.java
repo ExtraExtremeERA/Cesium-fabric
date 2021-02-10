@@ -50,6 +50,7 @@ public class SodiumConfig {
         this.addMixinRule("features.render_layer", true);
         this.addMixinRule("features.texture_tracking", true);
         this.addMixinRule("features.world_ticking", true);
+        this.addMixinRule("features.cheats", true);
     }
 
     /**

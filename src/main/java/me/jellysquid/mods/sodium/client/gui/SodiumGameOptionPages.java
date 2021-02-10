@@ -34,7 +34,7 @@ public class SodiumGameOptionPages {
                         .setName("View Distance")
                         .setTooltip("The view distance controls how far away terrain will be rendered. Lower distances mean that less terrain will be " +
                                 "rendered, improving frame rates.")
-                        .setControl(option -> new SliderControl(option, 2, 32, 1, ControlValueFormatter.quantity("Chunks")))
+                        .setControl(option -> new SliderControl(option, 2, 256, 1, ControlValueFormatter.quantity("Chunks")))
                         .setBinding((options, value) -> options.viewDistance = value, options -> options.viewDistance)
                         .setImpact(OptionImpact.HIGH)
                         .setFlags(OptionFlag.REQUIRES_RENDERER_RELOAD)
@@ -342,5 +342,21 @@ public class SodiumGameOptionPages {
                 )
                 .build());
         return new OptionPage("Advanced", ImmutableList.copyOf(groups));
+    }
+
+    public static OptionPage cheats() {
+       // boolean slipOn = SodiumClientMod.options().cheat.slippy;
+
+        List<OptionGroup> groups = new ArrayList<>();
+
+        groups.add(OptionGroup.createBuilder()
+                .add(OptionImpl.createBuilder(boolean.class, sodiumOpts)
+                        .setName("Slipperiness")
+                        .setTooltip("Makes all blocks slippy!")
+                        .setControl(TickBoxControl::new)
+                        .setBinding((opts, value) -> opts.cheat.slippy = value, opts -> opts.cheat.slippy)
+                        .build()
+                ).build());
+        return new OptionPage("Paradox", ImmutableList.copyOf(groups));
     }
 }
