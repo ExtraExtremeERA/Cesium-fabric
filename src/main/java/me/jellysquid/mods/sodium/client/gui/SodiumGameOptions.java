@@ -53,6 +53,7 @@ public class SodiumGameOptions {
 
     public static class CheatSettings {
         public boolean slippy = false;
+        public int slippyScale = 6;
     }
 
     public enum ChunkRendererBackendOption implements TextProvider {

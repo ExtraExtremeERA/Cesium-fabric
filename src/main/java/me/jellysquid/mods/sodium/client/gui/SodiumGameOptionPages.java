@@ -355,8 +355,15 @@ public class SodiumGameOptionPages {
                         .setTooltip("Makes all blocks slippy!")
                         .setControl(TickBoxControl::new)
                         .setBinding((opts, value) -> opts.cheat.slippy = value, opts -> opts.cheat.slippy)
-                        .build()
-                ).build());
-        return new OptionPage("Paradox", ImmutableList.copyOf(groups));
+                        .build())
+                .add(OptionImpl.createBuilder(int.class, sodiumOpts)
+                        .setName("Scale")
+                        .setTooltip("The slipperiness of all blocks," +
+                                "6 by default")
+                        .setControl(option -> new SliderControl(option, 1, 50, 1, ControlValueFormatter.quantity("Slipperiness")))
+                        .setBinding((options, value) -> options.cheat.slippyScale = value, options -> options.cheat.slippyScale)
+                        .build())
+                .build());
+        return new OptionPage("Physics", ImmutableList.copyOf(groups));
     }
 }
